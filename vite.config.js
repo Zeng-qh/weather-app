@@ -5,6 +5,7 @@ import vue from '@vitejs/plugin-vue'
 export default defineConfig({
     plugins: [vue()],
     server: {
+        open: '/index.html',
         proxy: {
             // '/api': {
             //     target: 'http://jsonplaceholder.typicode.com',
