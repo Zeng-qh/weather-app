@@ -3,30 +3,31 @@
   <HelloWorld msg="Hello Vue 3 + Vite" />
 </template>
 
-<script setup>
-import  axios  from "axios";
-import { getCurrentInstance, onMounted, onUpdated } from "vue";
-import HelloWorld from "./components/HelloWorld.vue";
+<script >
+import axios from "axios";
+import { getCurrentInstance, onMounted, onUpdated } from "vue"
+import HelloWorld from "./components/HelloWorld.vue"
 
-const { proxy, ctx } = getCurrentInstance() 
-
-console.dir(proxy);  
-
-onMounted(() => {
-  console.dir(this);
-  
-  proxy.$axios.get("/api")
-  .then(res => {
-    console.log(res)
-  })
-  .catch(err => {
-    console.error(err);
-  })
-}),
-  onUpdated(() => {
-    console.dir(this.axios);
-  });
-
+export default {
+  components: {
+    HelloWorld,
+  },
+  setup() {
+    const { proxy, ctx } = getCurrentInstance()
+    var x = () => {
+      console.dir(this)
+      proxy.$axios
+        .get("/api")
+        .then((res) => {
+          console.log(res)
+        })
+        .catch((err) => {
+          console.error(err)
+        })
+    }
+    x()
+  },
+}
 </script>
 
 <style>
