@@ -5,29 +5,29 @@
 
 <script >
 import axios from "axios";
-import { getCurrentInstance, onMounted, onUpdated } from "vue"
-import HelloWorld from "./components/HelloWorld.vue"
+import { getCurrentInstance, onMounted, onUpdated } from "vue";
+import HelloWorld from "./components/HelloWorld.vue";
 
 export default {
   components: {
     HelloWorld,
   },
   setup() {
-    const { proxy, ctx } = getCurrentInstance()
+    const { proxy, ctx } = getCurrentInstance();
     var x = () => {
-      console.dir(this)
+      console.dir(this);
       proxy.$axios
-        .get("/api")
+        .get("/api/v2/photos")
         .then((res) => {
-          console.log(res)
+          console.log(res);
         })
         .catch((err) => {
-          console.error(err)
-        })
-    }
-    x()
+          console.error(err);
+        });
+    };
+    x();
   },
-}
+};
 </script>
 
 <style>
