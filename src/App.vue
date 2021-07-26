@@ -4,10 +4,29 @@
 </template>
 
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
+import  axios  from "axios";
+import { getCurrentInstance, onMounted, onUpdated } from "vue";
+import HelloWorld from "./components/HelloWorld.vue";
 
-// This starter template is using Vue 3 experimental <script setup> SFCs
-// Check out https://github.com/vuejs/rfcs/blob/script-setup-2/active-rfcs/0000-script-setup.md
+const { proxy, ctx } = getCurrentInstance() 
+
+console.dir(proxy);  
+
+onMounted(() => {
+  console.dir(this);
+  
+  proxy.$axios.get("/api")
+  .then(res => {
+    console.log(res)
+  })
+  .catch(err => {
+    console.error(err);
+  })
+}),
+  onUpdated(() => {
+    console.dir(this.axios);
+  });
+
 </script>
 
 <style>
