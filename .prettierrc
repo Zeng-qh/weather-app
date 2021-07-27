@@ -1,7 +1,7 @@
 {
-    "semi":false,//   末尾添加分号
-    "singleQuote":true,  //使用单引号
-    "TrailingCooma": "none",// 行尾逗号,默认none,可选 none|es5|all
+    "semi":false,
+    "singleQuote":true,  
+    "TrailingCooma": "none", 
     "tabWidth": 2,   
     "printWidth":300
 }

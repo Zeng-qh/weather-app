@@ -1,22 +1,20 @@
 <template>
   <h1>{{ msg }}</h1>
-  <button type="button" @click="state.count++">
-    count is: {{ state.count }}
-  </button>
+  <button type="button" @click="state.count++">count is: {{ state.count }}</button>
 </template>
 
 <script >
-import { reactive, defineProps } from "vue";
+import { reactive, defineProps } from 'vue'
 
 export default {
   setup() {
     defineProps({
       msg: String,
-    });
-    const state = reactive({ count: 0 });
-    return { state };
+    })
+    const state = reactive({ count: 0 })
+    return { state }
   },
-};
+}
 </script>
 
 <style scoped>
