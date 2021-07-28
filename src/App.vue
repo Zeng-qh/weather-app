@@ -1,42 +1,34 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png" />
+  <HelloWorld msg="Hello Vue 3 + Vite" />
 </template>
 
-<script > 
+<script >
 import { getCurrentInstance, onMounted } from 'vue'
-
+import HelloWorld from './components/HelloWorld.vue'
 
 export default {
+  components: {
+    HelloWorld,
+  },
   setup() {
     const { proxy, ctx } = getCurrentInstance()
-    var x = () => {
-     //  axios.defaults.baseURL="http://t.weather.itboy.net/weather/city/101030100"
-      console.dir(this);
 
-      proxy.$axios
-        .get("/jsapi/todos/1")
-        .then((res) => {
-          console.log(res);
-        })
-        .catch((err) => {
-          console.error(err);
-        });
-    };
-    var as = () => {
-      axios
-        .get("/jsapi/todos/1")
-        .then((res) => {
-          console.log(res);
-        })
-        .catch((err) => {
-          console.error(err);
-        });
-    };
-    x();
-    as()
+    //  axios.defaults.baseURL="http://t.weather.itboy.net/weather/city/101030100"
+ 
     onMounted(() => {
+      proxy.$axios
+        .get('/jsapi/todos/1')
+        .then((res) => {
+          console.log(res)
+        })
+        .catch((err) => {
+          console.error(err)
+        })
+
       console.log('Component is mounted!')
     })
+    return {}
   },
 }
 </script>
