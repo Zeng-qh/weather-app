@@ -9,6 +9,7 @@ export default defineConfig({
         open: true,
         cors: true,
         proxy: {
+
             '^/api': {
                 target: 'http://t.weather.itboy.net/api/weather/city/101030100',
                 changeOrigin: true,

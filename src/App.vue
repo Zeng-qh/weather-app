@@ -1,21 +1,18 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Hello Vue 3 + Vite" />
 </template>
 
-<script >
-import axios from "axios";
-import { getCurrentInstance, onMounted, onUpdated } from "vue";
-import HelloWorld from "./components/HelloWorld.vue";
+<script > 
+import { getCurrentInstance, onMounted } from 'vue'
+
 
 export default {
-  components: {
-    HelloWorld,
-  },
   setup() {
-    const { proxy, ctx } = getCurrentInstance();
+    const { proxy, ctx } = getCurrentInstance()
     var x = () => {
+     //  axios.defaults.baseURL="http://t.weather.itboy.net/weather/city/101030100"
       console.dir(this);
+
       proxy.$axios
         .get("/jsapi/todos/1")
         .then((res) => {
@@ -37,8 +34,11 @@ export default {
     };
     x();
     as()
+    onMounted(() => {
+      console.log('Component is mounted!')
+    })
   },
-};
+}
 </script>
 
 <style>
