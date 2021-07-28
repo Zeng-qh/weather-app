@@ -17,7 +17,17 @@ export default {
     var x = () => {
       console.dir(this);
       proxy.$axios
-        .get("/api/v2/photos")
+        .get("/jsapi/todos/1")
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    };
+    var as = () => {
+      axios
+        .get("/jsapi/todos/1")
         .then((res) => {
           console.log(res);
         })
@@ -26,6 +36,7 @@ export default {
         });
     };
     x();
+    as()
   },
 };
 </script>

@@ -5,23 +5,26 @@ import vue from '@vitejs/plugin-vue'
 export default defineConfig({
     plugins: [vue()],
     server: {
+        host: "0.0.0.0",
         open: true,
-        // cors: true,
+        cors: true,
         proxy: {
-
-            '^/api': { //https://github.com/chimurai/http-proxy-middleware
+            '^/api': {
                 target: 'http://t.weather.itboy.net/api/weather/city/101030100',
                 changeOrigin: true,
                 rewrite: (path) => path.replace(/^\/api/, '')
             },
-            // 使用 proxy 实例  https://www.cnblogs.com/threeyou/p/13449996.html
-            '/api/v2': {
-                target: 'http://jsonplaceholder.typicode.com',
+            // 这里不要使用  apijs 这相当于没有使用代理
+            '^/jsapi': {
+                target: 'https://jsonplaceholder.typicode.com',
                 changeOrigin: true,
-                rewrite: (path) => {
-                    var x = path.replace(/^\/api\/v2/, '/')
-                    console.dir(x);
-                }
+                rewrite: (path) => path.replace(/^\/jsapi/, '')
+            },
+            // 使用 proxy 实例  https://www.cnblogs.com/threeyou/p/13449996.html 
+            '^/hayes': {
+                target: 'https://jsonplaceholder.typicode.com',
+                changeOrigin: true,
+                rewrite: (path) => path.replace(/^\/hayes/, '')
             }
         }
     }
