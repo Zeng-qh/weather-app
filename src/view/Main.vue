@@ -1,6 +1,9 @@
 <template>
-  <!-- {{ data.state.jsondata }} -->
- {{data.state.list[7]}}
+  {{ data.state.cityInfo }}
+  <div v-for="(item, i) in data.state.forecast" :key="i">
+    {{ item }}
+    <h1></h1>
+  </div>
   <button type="button" @click="state.count++">count is: {{ state.count }}</button>
 </template>
 
@@ -14,11 +17,15 @@ export default {
     const state = reactive({ count: 0 })
     const data = {
       state: reactive({
-        jsondata: {},
+        forecast: {},
+        cityInfo: {},
         list: [],
       }),
-      setjsondata(list) {
-        this.state.jsondata = list
+      SetcityInfo(info) {
+        this.state.cityInfo = info
+      },
+      Setforecast(list) {
+        this.state.forecast = list
       },
       SetListdata(list) {
         this.state.list = list
@@ -30,18 +37,10 @@ export default {
 
     onMounted(() => {
       data
-        //   /hayes/api/weather/city/101030100
-        .getdate('/jsapi/users')
+        .getdate('/hayes/api/weather/city/101280601')
         .then((res) => {
-          data.setjsondata(res.data)
-          data.SetListdata(res.data)
-          
-          // JSON.stringify()
-          // console.dir(JSON.parse(data.state.jsondata))
-          console.dir(data.state.jsondata)
-          console.dir(data.state.list[7].id)
-          // data.SetListdata(JSON.parse(data.state.jsondata).forecast)
-          // console.dir( data.state.list.forecast);
+          data.Setforecast(res.data.data.forecast)
+          data.SetcityInfo(res.data.cityInfo)
         })
         .catch((err) => {
           console.error(err)
