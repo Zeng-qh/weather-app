@@ -22,8 +22,13 @@ export default defineConfig({
                 rewrite: (path) => path.replace(/^\/jsapi/, '')
             },
             // 使用 proxy 实例  https://www.cnblogs.com/threeyou/p/13449996.html 
-            '^/hayes': {
+            '^/weather': {
                 target: 'http://t.weather.itboy.net',
+                changeOrigin: true,
+                rewrite: (path) => path.replace(/^\/weather/, '')
+            },
+            "hayes":{
+                target: 'http://hayes.qicp.vip',
                 changeOrigin: true,
                 rewrite: (path) => path.replace(/^\/hayes/, '')
             }
