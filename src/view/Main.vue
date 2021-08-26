@@ -37,7 +37,7 @@ export default {
 
     onMounted(() => {
       data
-        .getdate('/hayes/api/weather/city/101280601')
+        .getdate('/api/weather/city/101280601')
         .then((res) => {
           data.Setforecast(res.data.data.forecast)
           data.SetcityInfo(res.data.cityInfo)
